@@ -1,0 +1,65 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        table, td, th {
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 15px;
+        }
+
+        .img-td {
+            width: auto;
+        }
+
+        .img-td img {
+            width: 50%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<h1>Instaritter</h1>
+<hr/>
+<div th:if="${message}">
+    <h3 th:text="${message}"></h3>
+</div>
+
+<div>
+    <form method="POST" action="/uploadPicture" enctype="multipart/form-data">
+        <label for="pictureFile"> Picture Content:
+            <input type="file" id="pictureFile" name="pictureFile"/>
+        </label>
+        <br/><br/>
+        <label for="description"> Picture Description:
+            <input type="text" id="description" name="description"/>
+        </label>
+        <br/><br/>
+        <input type="submit" value="Submit"/>
+    </form>
+</div>
+<hr/>
+<div th:if="${pictureList.size()>0}">
+    <h2 th:text="Pictures"></h2>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Picture</th>
+        </tr>
+        <tr th:each="picture : ${pictureList}">
+            <td th:text="${picture.pictureDate}"></td>
+            <td th:text="${picture.description}"></td>
+            <td class="img-td"><img th:src="@{'data:image/png;base64,'+${picture.content}}"/></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
