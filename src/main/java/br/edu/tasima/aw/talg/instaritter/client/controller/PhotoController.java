@@ -22,13 +22,14 @@ public class PhotoController {
     private final PhotoService photoService;
 
     @Autowired
-    public PhotoController(RestClientService service, PhotoService photoService){
+    public PhotoController(RestClientService service, PhotoService photoService) {
         this.service = service;
         this.photoService = photoService;
     }
 
     /**
      * Get all photos
+     *
      * @param model to bind photos to view
      * @return the photos.html page
      */
@@ -41,13 +42,13 @@ public class PhotoController {
 
     @PostMapping("/uploadPhoto")
     public String handlePhotoUpload(@RequestParam("photoFile") MultipartFile photoFile,
-                                      @RequestParam("description") String description,
-                                      RedirectAttributes redirectAttributes) {
-
+                                    @RequestParam("description") String description,
+                                    RedirectAttributes redirectAttributes) {
         try {
             byte[] photoFileByteArray = photoService.validateImageFile(photoFile);
-            //TODO Create save enpoint on server side
-//            service.save(photoFileByteArray, description);
+
+            Photo photo = photoService.processImageFile(photoFileByteArray, description);
+            service.savePhoto(photo);
 
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded " + photoFile.getOriginalFilename() + "!");
