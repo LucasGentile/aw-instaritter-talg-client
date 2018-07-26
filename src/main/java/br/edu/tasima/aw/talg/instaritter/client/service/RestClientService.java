@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Service
 public class RestClientService {
 
-    private final String GET_BASE_URL = "http://localhost:8080/api/photos";
+    private final String GET_BASE_URL = "http://localhost:8081/api/photos";
 
     private final RestTemplate restTemplate;
 
