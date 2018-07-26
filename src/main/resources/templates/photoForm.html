@@ -33,12 +33,12 @@
 </div>
 
 <div>
-    <form method="POST" action="/uploadPicture" enctype="multipart/form-data">
-        <label for="pictureFile"> Picture Content:
-            <input type="file" id="pictureFile" name="pictureFile"/>
+    <form method="POST" action="/uploadPhoto" enctype="multipart/form-data">
+        <label for="photoFile"> Photo Content:
+            <input type="file" id="photoFile" name="photoFile"/>
         </label>
         <br/><br/>
-        <label for="description"> Picture Description:
+        <label for="description"> Photo Description:
             <input type="text" id="description" name="description"/>
         </label>
         <br/><br/>
@@ -46,18 +46,18 @@
     </form>
 </div>
 <hr/>
-<div th:if="${pictureList.size()>0}">
-    <h2 th:text="Pictures"></h2>
+<div th:if="${photoList.size()>0}">
+    <h2 th:text="Photos"></h2>
     <table>
         <tr>
             <th>Date</th>
             <th>Description</th>
-            <th>Picture</th>
+            <th>Photo</th>
         </tr>
-        <tr th:each="picture : ${pictureList}">
-            <td th:text="${picture.pictureDate}"></td>
-            <td th:text="${picture.description}"></td>
-            <td class="img-td"><img th:src="@{'data:image/png;base64,'+${picture.content}}"/></td>
+        <tr th:each="photo : ${photoList}">
+            <td th:text="${photo.dateTime}"></td>
+            <td th:text="${photo.description}"></td>
+            <td class="img-td"><img th:src="@{'data:image/png;base64,'+${photo.image}}"/></td>
         </tr>
     </table>
 </div>
