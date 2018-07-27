@@ -37,7 +37,7 @@ public class PhotoController {
     public String showPhotoForm(Model model) {
         List<Photo> photoList = service.findAllPhotos();
         model.addAttribute("photoList", photoList);
-        return "photoForm";
+        return "index";
     }
 
     @PostMapping("/uploadPhoto")

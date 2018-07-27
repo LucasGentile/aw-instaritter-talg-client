@@ -61,6 +61,6 @@ public class RestClientService {
         requestHeaders.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<?> requestEntity = new HttpEntity<>(photo, requestHeaders);
 
-        restTemplate.exchange(GET_BASE_API_URL + GET_PHOTO_API + "/save", HttpMethod.PUT, requestEntity, Photo.class);
+        restTemplate.exchange(GET_BASE_API_URL + GET_PHOTO_API, HttpMethod.PUT, requestEntity, Photo.class);
     }
 }
